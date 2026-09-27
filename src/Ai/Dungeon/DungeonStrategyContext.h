@@ -18,6 +18,7 @@
 #include "HoSStrategy.h"
 #include "MechStrategy.h"
 #include "MgTStrategy.h"
+#include "MTStrategy.h"
 #include "NexStrategy.h"
 #include "OCStrategy.h"
 #include "PoSStrategy.h"
@@ -40,6 +41,7 @@ public:
 
         // Burning Crusade
         creators["tbc-ac"] = &DungeonStrategyContext::tbc_ac;           // Auchindoun: Auchenai Crypts
+        creators["tbc-mt"] = &DungeonStrategyContext::tbc_mt;           // Auchindoun: Mana-Tombs
         creators["tbc-seth"] = &DungeonStrategyContext::tbc_seth;       // Auchindoun: Sethekk Halls
         creators["tbc-mech"] = &DungeonStrategyContext::tbc_mech;       // Tempest Keep: The Mechanar
         creators["tbc-ub"] = &DungeonStrategyContext::tbc_ub;           // Coilfang Reservoir: The Underbog
@@ -66,6 +68,7 @@ public:
 
 private:
     static Strategy* tbc_ac(PlayerbotAI* botAI) { return new TbcDungeonAuchenaiCryptsStrategy(botAI); }
+    static Strategy* tbc_mt(PlayerbotAI* botAI) { return new TbcDungeonManaTombsStrategy(botAI); }
     static Strategy* tbc_seth(PlayerbotAI* botAI) { return new TbcDungeonSethekkHallsStrategy(botAI); }
     static Strategy* tbc_mech(PlayerbotAI* botAI) { return new TbcDungeonMechanarStrategy(botAI); }
     static Strategy* tbc_ub(PlayerbotAI* botAI) { return new TbcDungeonUnderbogStrategy(botAI); }
