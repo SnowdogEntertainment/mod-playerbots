@@ -21,4 +21,19 @@ public:
     bool IsActive() override;
 };
 
+// Mana Leech (trash)
+
+inline constexpr uint32 NPC_MANA_LEECH = 19306;
+inline constexpr uint32 NPC_MANA_LEECH_HEROIC = 20263;
+inline constexpr float MANA_LEECH_EXPLOSION_RADIUS = 10.0f;
+inline constexpr float MANA_LEECH_SAFE_DISTANCE = MANA_LEECH_EXPLOSION_RADIUS + 2.0f;
+
+class NonTankTooCloseToManaLeechTrigger : public Trigger
+{
+public:
+    NonTankTooCloseToManaLeechTrigger(PlayerbotAI* botAI)
+        : Trigger(botAI, "non-tank too close to mana leech") {}
+    bool IsActive() override;
+};
+
 #endif

@@ -21,4 +21,14 @@ public:
     float GetValue(Action* action) override;
 };
 
+// Mana Leech (trash)
+
+class ManaLeechMultiplier : public Multiplier
+{
+public:
+    ManaLeechMultiplier(PlayerbotAI* ai) : Multiplier(ai, "mana leech") {}
+
+    float GetValue(Action* action) override;
+};
+
 #endif

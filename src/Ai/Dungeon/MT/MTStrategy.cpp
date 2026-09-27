@@ -13,10 +13,17 @@ void TbcDungeonManaTombsStrategy::InitTriggers(std::vector<TriggerNode*>& trigge
     // Nexus-Prince Shaffar
     triggers.push_back(new TriggerNode("shaffar ethereal beacon summoned", {
         NextAction("shaffar mark ethereal beacon with skull", ACTION_RAID) }));
+
+    // Mana Leech (trash)
+    triggers.push_back(new TriggerNode("non-tank too close to mana leech", {
+        NextAction("move away from mana leech", ACTION_EMERGENCY + 10) }));
 }
 
 void TbcDungeonManaTombsStrategy::InitMultipliers(std::vector<Multiplier*>& multipliers)
 {
     // Pandemonius
     multipliers.push_back(new PandemoniusDarkShellMultiplier(botAI));
+
+    // Mana Leech (trash)
+    multipliers.push_back(new ManaLeechMultiplier(botAI));
 }

@@ -6,6 +6,7 @@
 
 #include "MTActions.h"
 #include "EncounterHelpers.h"
+#include "MTTriggers.h"
 #include "Playerbots.h"
 
 using namespace EncounterHelpers;
@@ -19,4 +20,20 @@ bool ShaffarMarkEtherealBeaconWithSkullAction::Execute(Event /*event*/)
         return false;
 
     return MarkTargetWithSkull(bot, beacon);
+}
+
+// Mana Leech (trash)
+
+bool MoveAwayFromManaLeechAction::Execute(Event /*event*/)
+{
+    Unit* target = AI_VALUE(Unit*, "current target");
+    if (!target)
+        return false;
+
+    float currentDistance = bot->GetExactDist2d(target);
+    if (currentDistance >= MANA_LEECH_SAFE_DISTANCE)
+        return false;
+
+    bot->CastStop();
+    return MoveAway(target, MANA_LEECH_SAFE_DISTANCE - currentDistance);
 }

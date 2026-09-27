@@ -17,10 +17,16 @@ public:
     {
         creators["shaffar ethereal beacon summoned"] =
             &TbcDungeonManaTombsTriggerContext::shaffar_ethereal_beacon_summoned;
+
+        creators["non-tank too close to mana leech"] =
+            &TbcDungeonManaTombsTriggerContext::non_tank_too_close_to_mana_leech;
     }
 private:
     static Trigger* shaffar_ethereal_beacon_summoned(PlayerbotAI* botAI) {
         return new ShaffarEtherealBeaconSummonedTrigger(botAI);
+    }
+    static Trigger* non_tank_too_close_to_mana_leech(PlayerbotAI* botAI) {
+        return new NonTankTooCloseToManaLeechTrigger(botAI);
     }
 };
 

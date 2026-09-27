@@ -6,7 +6,9 @@
 
 #include "MTMultipliers.h"
 #include "GenericSpellActions.h"
+#include "MTTriggers.h"
 #include "Playerbots.h"
+#include "ReachTargetActions.h"
 
 // Pandemonius
 
@@ -32,6 +34,26 @@ float PandemoniusDarkShellMultiplier::GetValue(Action* action)
 
     Unit* target = AI_VALUE(Unit*, "current target");
     if (!target || target->GetGUID() != boss->GetGUID())
+        return 1.0f;
+
+    return 0.0f;
+}
+
+// Mana Leech (trash)
+
+// Stops non-tanks from ever closing to melee range of a Mana Leech in the first place;
+// NonTankTooCloseToManaLeechTrigger/MoveAwayFromManaLeechAction handle anyone already
+// standing too close (e.g. approaching before target selection settled on it).
+float ManaLeechMultiplier::GetValue(Action* action)
+{
+    if (PlayerbotAI::IsTank(bot))
+        return 1.0f;
+
+    if (!dynamic_cast<ReachMeleeAction*>(action))
+        return 1.0f;
+
+    Unit* target = AI_VALUE(Unit*, "current target");
+    if (!target || (target->GetEntry() != NPC_MANA_LEECH && target->GetEntry() != NPC_MANA_LEECH_HEROIC))
         return 1.0f;
 
     return 0.0f;

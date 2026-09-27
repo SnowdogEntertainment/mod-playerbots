@@ -17,10 +17,16 @@ public:
     {
         creators["shaffar mark ethereal beacon with skull"] =
             &TbcDungeonManaTombsActionContext::shaffar_mark_ethereal_beacon_with_skull;
+
+        creators["move away from mana leech"] =
+            &TbcDungeonManaTombsActionContext::move_away_from_mana_leech;
     }
 private:
     static Action* shaffar_mark_ethereal_beacon_with_skull(PlayerbotAI* botAI) {
         return new ShaffarMarkEtherealBeaconWithSkullAction(botAI);
+    }
+    static Action* move_away_from_mana_leech(PlayerbotAI* botAI) {
+        return new MoveAwayFromManaLeechAction(botAI);
     }
 };
 
