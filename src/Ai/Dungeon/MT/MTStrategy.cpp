@@ -17,6 +17,9 @@ void TbcDungeonManaTombsStrategy::InitTriggers(std::vector<TriggerNode*>& trigge
     // Mana Leech (trash)
     triggers.push_back(new TriggerNode("non-tank too close to mana leech", {
         NextAction("move away from mana leech", ACTION_EMERGENCY + 10) }));
+
+    triggers.push_back(new TriggerNode("melee blocked from mana leech", {
+        NextAction("shoot", ACTION_NORMAL) }));
 }
 
 void TbcDungeonManaTombsStrategy::InitMultipliers(std::vector<Multiplier*>& multipliers)

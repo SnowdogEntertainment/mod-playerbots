@@ -36,4 +36,12 @@ public:
     bool IsActive() override;
 };
 
+class MeleeBlockedFromManaLeechTrigger : public Trigger
+{
+public:
+    MeleeBlockedFromManaLeechTrigger(PlayerbotAI* botAI)
+        : Trigger(botAI, "melee blocked from mana leech") {}
+    bool IsActive() override;
+};
+
 #endif

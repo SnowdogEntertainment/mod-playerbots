@@ -20,6 +20,9 @@ public:
 
         creators["non-tank too close to mana leech"] =
             &TbcDungeonManaTombsTriggerContext::non_tank_too_close_to_mana_leech;
+
+        creators["melee blocked from mana leech"] =
+            &TbcDungeonManaTombsTriggerContext::melee_blocked_from_mana_leech;
     }
 private:
     static Trigger* shaffar_ethereal_beacon_summoned(PlayerbotAI* botAI) {
@@ -27,6 +30,9 @@ private:
     }
     static Trigger* non_tank_too_close_to_mana_leech(PlayerbotAI* botAI) {
         return new NonTankTooCloseToManaLeechTrigger(botAI);
+    }
+    static Trigger* melee_blocked_from_mana_leech(PlayerbotAI* botAI) {
+        return new MeleeBlockedFromManaLeechTrigger(botAI);
     }
 };
 

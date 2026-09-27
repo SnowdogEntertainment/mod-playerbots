@@ -41,3 +41,17 @@ bool NonTankTooCloseToManaLeechTrigger::IsActive()
 
     return bot->GetExactDist2d(target) < MANA_LEECH_SAFE_DISTANCE;
 }
+
+// ManaLeechMultiplier keeps melee off this mob entirely, which would otherwise leave them
+// with nothing to do once they back off. "shoot" is the existing generic ranged-weapon action
+// (auto-detects gun/bow/crossbow/thrown, already used for Warrior/Rogue pulls) -- reuse it as
+// their substitute instead of adding a new action. Bots with no ranged weapon equipped simply
+// find it not possible, same as it already behaves everywhere else it's used.
+bool MeleeBlockedFromManaLeechTrigger::IsActive()
+{
+    if (PlayerbotAI::IsTank(bot) || PlayerbotAI::IsRanged(bot))
+        return false;
+
+    Unit* target = AI_VALUE(Unit*, "current target");
+    return target && (target->GetEntry() == NPC_MANA_LEECH || target->GetEntry() == NPC_MANA_LEECH_HEROIC);
+}
